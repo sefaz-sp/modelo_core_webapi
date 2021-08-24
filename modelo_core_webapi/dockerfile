@@ -1,0 +1,6 @@
+FROM repo-microsrv.intra.fazenda.sp.gov.br:5000/dotnet/aspnet:3.1
+WORKDIR /var/api/modelo_core_webapi
+EXPOSE 80
+EXPOSE 443
+COPY . .
+ENTRYPOINT ["dotnet", "modelo_core_webapi.dll"]

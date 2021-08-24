@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Lgpd.Mascarador.Config;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -8,6 +9,7 @@ namespace modelo.projetos
     public class Projetos
     {
         public int Id { get; set; }
+        [AtributoSensivel]
         public string Nome { get; set; }
         public string Descricao { get; set; }
         public Projetos(int id, string nome, string descricao)
