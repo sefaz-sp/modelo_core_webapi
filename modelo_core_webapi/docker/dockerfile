@@ -1,4 +1,4 @@
-FROM repo-microsrv.intra.fazenda.sp.gov.br:5000/dotnet/aspnet:3.1
+FROM microsrv.intra.fazenda.sp.gov.br:5000/dotnet/aspnet:3.1-alpine
 WORKDIR /var/api/modelo_core_webapi
 EXPOSE 80
 EXPOSE 443
