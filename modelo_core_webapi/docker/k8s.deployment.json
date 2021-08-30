@@ -7,8 +7,6 @@
   },
   "spec": {
     "replicas": 1,
-    "automountServiceAccountToken": false,
-    "serviceAccount": "microservico-ads-dev",
     "selector": {
       "matchLabels": {
         "app": "[transformar]"
@@ -21,6 +19,8 @@
         }
       },
       "spec": {
+        "automountServiceAccountToken": false,
+        "serviceAccount": "microservico-ads-dev",
         "nodeSelector": {
           "arquitetura": "[transformar]"
         },
