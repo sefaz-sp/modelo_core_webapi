@@ -37,12 +37,12 @@ namespace modelo_core_webapi
                 app.UseDeveloperExceptionPage();
             }
 
-            //No servidor kubernetes com aplicações compartilhadas, a pasta base da rota deve ser informada (nomeappkubernetes)
-            if (!string.IsNullOrEmpty(Configuration["dadosdeploy:nomeappkubernetes"]))
+            //No servidor kubernetes com aplicações compartilhadas, a pasta base da rota deve ser informada (nomeappk8s)
+            if (!string.IsNullOrEmpty(Configuration["dadosdeploy:nomeappk8s"]))
             {
                 app.Use((context, next) =>
                 {
-                    context.Request.PathBase = "/" + Configuration["dadosdeploy:nomeappkubernetes"];
+                    context.Request.PathBase = "/" + Configuration["dadosdeploy:nomeappk8s"];
                     return next();
                 });
             }
