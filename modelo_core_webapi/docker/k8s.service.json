@@ -3,21 +3,22 @@
   "kind": "Service",
   "metadata": {
     "name": "[transformar]",
-    "namespace": "[transformar]"
+    "namespace": "[transformar]",
+    "annotations": {
+      "metallb.universe.tf/address-pool": "default"
+    }
   },
   "spec": {
-    "type": "NodePort",
     "ports": [
       {
         "port": 80,
-        "nodePort": 30002,
-        "targetPort": 80,
-        "protocol": "TCP",
-        "name": "http"
+        "targetPort": 80
       }
     ],
     "selector": {
       "app": "[transformar]"
-    }
+    },
+    "type": "LoadBalancer",
+    "loadBalancerIP": "10.215.201.201"
   }
 }

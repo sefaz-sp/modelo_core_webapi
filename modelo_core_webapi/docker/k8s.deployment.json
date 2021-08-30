@@ -41,7 +41,7 @@
         ],
         "imagePullSecrets": [
           {
-            "name": "secret-registry"
+            "name": "secret-registry-harbor"
           }
         ],
         "dnsConfig": {
