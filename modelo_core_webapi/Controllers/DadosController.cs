@@ -80,7 +80,7 @@ namespace modelo_core_webapi.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Projetos>> GetProjetos(int id)
         {
-            if (!ProjetosExists(id))
+            if (!ProjetoExists(id))
             {
                 return NotFound();
             }
@@ -110,7 +110,7 @@ namespace modelo_core_webapi.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Projetos>> DeleteProjetos(int id)
         {
-            if (!ProjetosExists(id))
+            if (!ProjetoExists(id))
             {
                 return NotFound();
             }
@@ -122,7 +122,7 @@ namespace modelo_core_webapi.Controllers
             return projetos;
         }
 
-        private bool ProjetosExists(int id)
+        private bool ProjetoExists(int id)
         {
             return _context.Projetos.Any(e => e.Id == id);
         }
