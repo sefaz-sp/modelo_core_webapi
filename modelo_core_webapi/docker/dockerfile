@@ -4,5 +4,5 @@ EXPOSE 80
 EXPOSE 443
 COPY . .
 RUN https_proxy=http://proxyservidores.lbintra.fazenda.sp.gov.br:8080 apk add icu-libs
-DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
+ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
 ENTRYPOINT ["dotnet", "modelo_core_webapi.dll"]
