@@ -63,7 +63,7 @@
           "options": [
            {
              "name": "ndots",
-             "value": "0"
+             "value": "1"
            }
           ]
         }
