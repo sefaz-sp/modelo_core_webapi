@@ -32,6 +32,14 @@
           ]
         }
       }
+    ],
+    "tls": [
+      {
+        "hosts": [
+          "k8s-dev.intra.fazenda.sp.gov.br"
+        ],
+        "secretName": "k8s-secret-tls"
+      }
     ]
   }
 }

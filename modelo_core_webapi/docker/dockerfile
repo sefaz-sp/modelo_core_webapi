@@ -1,5 +1,8 @@
 FROM repoweb-microsrv.intra.fazenda.sp.gov.br:5000/dotnet/aspnet:3.1-alpine
-WORKDIR /var/api/modelo_core_webapi
+ARG user
+ARG keytab
+ARG appname
+WORKDIR /var/api/$appname
 EXPOSE 80
 EXPOSE 443
 RUN https_proxy=http://proxyservidores.lbintra.fazenda.sp.gov.br:8080 apk add icu-libs krb5
@@ -7,6 +10,6 @@ RUN https_proxy=http://proxyservidores.lbintra.fazenda.sp.gov.br:8080 apk add ic
 COPY . .
 COPY krb5.conf /etc/krb5.conf
 #Inicia ticket de autenticação Kerberos
-RUN kinit cs_sitecia_dev -k -t cs_sitecia_dev.keytab
+RUN kinit $user -k -t $keytab
 ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
-ENTRYPOINT ["dotnet", "modelo_core_webapi.dll"]
+ENTRYPOINT ["dotnet", "$appname.dll"]
