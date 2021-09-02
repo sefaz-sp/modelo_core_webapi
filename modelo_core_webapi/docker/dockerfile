@@ -5,10 +5,11 @@ ARG user
 ARG pass
 
 WORKDIR /var/api/modelo_core_webapi
-EXPOSE 80
-EXPOSE 443
+EXPOSE 8080
+EXPOSE 8443
 
 #
+ENV ASPNETCORE_URLS=http://+:8080
 ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
 
 #Adiciona usuario do Container (Non Root)
