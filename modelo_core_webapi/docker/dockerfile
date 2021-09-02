@@ -4,6 +4,9 @@ FROM repoweb-microsrv.intra.fazenda.sp.gov.br:5000/dotnet/aspnet:3.1-alpine
 ARG user
 ARG pass
 
+#Adiciona usuario do Container (Non Root)
+RUN adduser -D  $user
+
 WORKDIR /var/api/modelo_core_webapi
 EXPOSE 80
 EXPOSE 443
@@ -19,6 +22,9 @@ COPY . .
 
 #Copia arquivo de configuração para autenticação Kerberos
 COPY krb5.conf /etc/krb5.conf
+
+#Executa entrypoint como Non Root
+USER $user
 
 #Inicia ticket de autenticação Kerberos
 RUN echo "$pass" |kinit $user@INTRA.FAZENDA.SP.GOV.BR
