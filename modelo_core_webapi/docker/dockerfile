@@ -34,4 +34,4 @@ COPY krb5.conf /etc/krb5.conf
 RUN echo "$pass" |kinit $user@INTRA.FAZENDA.SP.GOV.BR && chmod +x *.sh
 #ENTRYPOINT ["dotnet", "modelo_core_webapi.dll"]
 #ENTRYPOINT ["/bin/sh", "entrypoint.sh"]
-ENTRYPOINT ["/bin/sh -x", "entrypoint.sh"]
+ENTRYPOINT ["entrypoint.sh"]
