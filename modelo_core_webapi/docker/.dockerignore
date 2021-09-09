@@ -1,2 +1,2 @@
-docker/*json
-docker/dockerfile
+*json
+dockerfile
