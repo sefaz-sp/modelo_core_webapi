@@ -1,3 +1,4 @@
 #!/bin/sh
 /bin/sh krenew.sh
-/usr/bin/dotnet modelo_core_webapi.dll
+ls -la
+/usr/bin/dotnet ./modelo_core_webapi.dll
