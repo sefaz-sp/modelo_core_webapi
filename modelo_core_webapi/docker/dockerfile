@@ -13,16 +13,19 @@ ENV ASPNETCORE_URLS=http://+:8080
 ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
 
 #Adiciona usuario do Container (Non Root)
-RUN adduser -D app && chown app *.sh
+RUN adduser -D app
 
 #Instala dependencias (Globalization e autenticação Kerberos)
 RUN https_proxy=http://proxyservidores.lbintra.fazenda.sp.gov.br:8080 apk add icu-libs krb5
 
-#Executa entrypoint como Non Root
-USER app
 
 #Copia arquivos da aplicação
 COPY . .
+
+RUN chown app .sh && chmod +x .sh
+
+#Executa entrypoint como Non Root
+USER app
 
 #Copia arquivo de configuração para autenticação Kerberos
 COPY krb5.conf /etc/krb5.conf
