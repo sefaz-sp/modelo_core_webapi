@@ -22,7 +22,7 @@ RUN https_proxy=http://proxyservidores.lbintra.fazenda.sp.gov.br:8080 apk add ic
 #Copia arquivos da aplicação
 COPY . .
 
-RUN chown app .sh && chmod +x .sh
+RUN chown app *.sh && chmod +x *.sh
 
 #Executa entrypoint como Non Root
 USER app
