@@ -30,4 +30,4 @@ COPY krb5.conf /etc/krb5.conf
 #Inicia ticket de autenticação Kerberos
 RUN echo "$pass" |kinit $user@INTRA.FAZENDA.SP.GOV.BR
 #ENTRYPOINT ["dotnet", "modelo_core_webapi.dll"]
-ENTRYPOINT ["/usr/bin/sh", "entrypoint.sh"]
+ENTRYPOINT ["/bin/sh", "entrypoint.sh"]
