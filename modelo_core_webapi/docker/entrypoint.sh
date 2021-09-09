@@ -5,4 +5,4 @@ DLL="modelo_core_webapi.dll"
 #Script de renovação de Ticket
 sh krenew.sh
 #Chamada do executavel da Aplicação
-dotnet $DLL
+dotnet modelo_core_webapi.dll
