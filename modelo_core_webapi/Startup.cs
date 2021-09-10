@@ -37,7 +37,7 @@ namespace modelo_core_webapi
                 app.UseDeveloperExceptionPage();
             }
 
-            //No servidor kubernetes com aplicações compartilhadas, a pasta base da rota deve ser informada (nomeappk8s)
+            //No servidor kubernetes com aplicaÃ§Ãµes compartilhadas, a pasta base da rota deve ser informada (nomeappk8s)
             if (!string.IsNullOrEmpty(Configuration["dadosdeploy:nomeappk8s"]))
             {
                 app.Use((context, next) =>
@@ -47,7 +47,7 @@ namespace modelo_core_webapi
                 });
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 
