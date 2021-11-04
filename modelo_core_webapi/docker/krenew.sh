@@ -3,5 +3,5 @@ while true
 do
   sh klogin.sh
   kinit -R
-  sleep 300
+  sleep 3600
 done
