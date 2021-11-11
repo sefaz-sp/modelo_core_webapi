@@ -27,6 +27,7 @@ namespace modelo_core_webapi
             services.AddTransient<Usuario>();
 
             services.AddDbContext<ProjetosContext>(options => { options.UseSqlServer(Configuration.GetConnectionString("Projetos")); });
+            services.AddApplicationInsightsTelemetry(Configuration["APPINSIGHTS_CONNECTIONSTRING"]);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
