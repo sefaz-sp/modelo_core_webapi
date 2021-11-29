@@ -122,12 +122,12 @@ namespace Modelo.Core.ADO.WebApi.Controllers
         {
             var projeto = _projetoService.Consultar(id);
 
-            if (projeto == null)
+            if (projeto == null || projeto.Id == 0)
             {
                 return NotFound();
             }
 
-            var model = projeto.ToModel();
+                var model = projeto.ToModel();
 
             return Ok(model);
         }
@@ -152,7 +152,7 @@ namespace Modelo.Core.ADO.WebApi.Controllers
         {
             var data = projeto.ToEntity();
 
-            return Execute(() => _projetoService.Alterar<ProjetoValidator>(data));            
+            return Executar(() => _projetoService.Alterar<ProjetoValidator>(data));            
         }
 
         /// POST /api/projetos
@@ -168,29 +168,20 @@ namespace Modelo.Core.ADO.WebApi.Controllers
         /// <returns>OK</returns>
         /// <response code="201">Informa que o projeto foi incluído</response>
         /// <response code="400">Erro ao processar solicitação</response>
-        //[HttpPost]
-        //[ProducesResponseType(StatusCodes.Status201Created)]
-        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
-        //public ActionResult Incluir(ProjetoModel projeto)
-        //{
-        //    var data = projeto.ToEntity();
+        /// <response code="404">Projeto não informado na requisição</response>
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult Incluir(NovoProjetoModel projeto)
+        {
+            if (projeto == null)
+                return NotFound();
 
-        //    try
-        //    {
-        //        data = _projetoService.Incluir<ProjetoValidator>(data);
+            var data = projeto.ToEntity();
 
-        //        var model = data.ToModel();
-
-        //        return CreatedAtAction(nameof(GetById), new { id = model.Id }, model);
-        //    }
-        //    catch(Exception e)
-        //    {
-
-        //    }
-            
-
-
-        //}
+            return Executar( () => _projetoService.Incluir<ProjetoValidator>(data).Id);
+        }
 
         private ActionResult Executar(Func<object> func)
         {
@@ -199,20 +190,6 @@ namespace Modelo.Core.ADO.WebApi.Controllers
                 var result = func();
 
                 return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex);
-            }
-        }
-
-        private ActionResult ExecutarInclusao(Func<object> func)
-        {
-            try
-            {
-                var result = func();
-
-                return CreatedAtAction(nameof(GetById), new { id =  } result);
             }
             catch (Exception ex)
             {

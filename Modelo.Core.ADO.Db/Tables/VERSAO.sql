@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[VERSAO]
+(
+	[cd_versao] BIGINT NOT NULL PRIMARY KEY, 
+    [ds_versao] NVARCHAR(MAX) NOT NULL
+)
