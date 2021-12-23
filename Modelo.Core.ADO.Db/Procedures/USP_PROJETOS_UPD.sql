@@ -1,7 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[USP_PROJETOS_UPD]
     @cd_projeto bigint,
 	@nm_projeto nvarchar(50),
-	@ds_projeto nvarchar(max)
+	@ds_projeto nvarchar(4000)
 AS
 	UPDATE [dbo].[PROJETOS]
 	SET    [nm_projeto] = @nm_projeto,
