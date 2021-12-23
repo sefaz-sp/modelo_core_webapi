@@ -5,9 +5,9 @@
 BEGIN
     CREATE TABLE [dbo].[PROJETOS]
     (
-		[Id] BIGINT NOT NULL PRIMARY KEY IDENTITY, 
-		[Nome] NVARCHAR(50) NOT NULL, 
-		[Descricao] NVARCHAR(MAX) NULL
+		[cd_projeto] BIGINT NOT NULL PRIMARY KEY IDENTITY, 
+		[nm_projeto] NVARCHAR(50) NOT NULL, 
+		[ds_projeto] NVARCHAR(MAX) NULL
     )
 
 END
@@ -20,12 +20,12 @@ END
 GO
 
 CREATE PROCEDURE [dbo].[USP_PROJETOS_SEL]
-    @Id bigint = null
+    @cd_projeto bigint = null
 AS
 BEGIN
-	SELECT Id, Nome, Descricao
+	SELECT cd_projeto, nm_projeto, ds_projeto
 	FROM   [dbo].[PROJETOS]
-	WHERE  Id = ISNULL(@Id, Id)
+	WHERE  cd_projeto = ISNULL(@cd_projeto, cd_projeto)
 END
 GO
 
@@ -39,15 +39,15 @@ END
 GO
 
 CREATE PROCEDURE [dbo].[USP_PROJETOS_UPD]
-    @Id bigint,
-	@Nome nvarchar(50),
-	@Descricao nvarchar(max)
+    @cd_projeto bigint,
+	@nm_projeto nvarchar(50),
+	@ds_projeto nvarchar(max)
 AS
 BEGIN
 	UPDATE [dbo].[PROJETOS]
-	SET    [Nome] = @Nome,
-	       [Descricao] = @Descricao
-	WHERE  Id = @Id
+	SET    [nm_projeto] = @nm_projeto,
+	       [ds_projeto] = @ds_projeto
+	WHERE  cd_projeto = @cd_projeto
 END
 GO
 
@@ -61,15 +61,15 @@ END
 GO
 
 CREATE PROCEDURE [dbo].[USP_PROJETOS_INS]
-	@Nome nvarchar(50),
-	@Descricao nvarchar(max)
+	@nm_projeto nvarchar(50),
+	@ds_projeto nvarchar(max)
 AS
 BEGIN
 	declare @id bigint
 
-	INSERT INTO [dbo].[PROJETOS]([Nome],[Descricao])
-	OUTPUT INSERTED.Id
-    VALUES (@Nome, @Descricao)
+	INSERT INTO [dbo].[PROJETOS]([nm_projeto],[ds_projeto])
+	OUTPUT INSERTED.cd_projeto
+    VALUES (@nm_projeto, @ds_projeto)
 
 	select @id
 END

@@ -1,7 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[USP_PROJETOS_SEL]
-    @Id bigint = null
+    @cd_projeto bigint = null
 AS
-	SELECT Id, Nome, Descricao
+	SELECT cd_projeto, nm_projeto, ds_projeto
 	FROM   [dbo].[PROJETOS]
-	WHERE  Id = ISNULL(@Id, Id)
+	WHERE  cd_projeto = ISNULL(@cd_projeto, cd_projeto)
 GO
