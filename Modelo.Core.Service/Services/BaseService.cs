@@ -4,7 +4,6 @@ using Modelo.Core.Domain.Exceptions;
 using Modelo.Core.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Modelo.Core.Service.Services
 {

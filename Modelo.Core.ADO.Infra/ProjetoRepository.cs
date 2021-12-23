@@ -29,9 +29,9 @@ namespace Modelo.Core.ADO.Infra
                 using (var cmd = new SqlCommand(ALTERAR, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@cd_projeto", obj.Id));
-                    cmd.Parameters.Add(new SqlParameter("@nm_projeto", obj.Nome));
-                    cmd.Parameters.Add(new SqlParameter("@ds_projeto", obj.Descricao));
+                    cmd.Parameters.Add(new SqlParameter("@Id", obj.Id));
+                    cmd.Parameters.Add(new SqlParameter("@Nome", obj.Nome));
+                    cmd.Parameters.Add(new SqlParameter("@Descricao", obj.Descricao));
 
                     var projeto = new ProjetoEntity();
                     conn.Open();
@@ -47,7 +47,7 @@ namespace Modelo.Core.ADO.Infra
                 using (var cmd = new SqlCommand(CONSULTAR, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@cd_projeto", id));
+                    cmd.Parameters.Add(new SqlParameter("@Id", id));
 
                     var projeto = new ProjetoEntity();
                     conn.Open();
@@ -77,8 +77,8 @@ namespace Modelo.Core.ADO.Infra
                 using (var cmd = new SqlCommand(INCLUIR, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@nm_projeto", obj.Nome));
-                    cmd.Parameters.Add(new SqlParameter("@ds_projeto", obj.Descricao));
+                    cmd.Parameters.Add(new SqlParameter("@Nome", obj.Nome));
+                    cmd.Parameters.Add(new SqlParameter("@Descricao", obj.Descricao));
 
                     var projeto = new ProjetoEntity();
                     conn.Open();
@@ -116,9 +116,9 @@ namespace Modelo.Core.ADO.Infra
 
             return new ProjetoEntity
             {
-                Id = safeReader.Get<Int64>("cd_projeto", Int64.MinValue),
-                Descricao = reader["ds_projeto"].ToString(),
-                Nome = reader["nm_projeto"].ToString()
+                Id = safeReader.Get<Int64>("Id", Int64.MinValue),
+                Descricao = reader["Descricao"].ToString(),
+                Nome = reader["Nome"].ToString()
             };
         }
     }
