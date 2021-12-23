@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[PROJETOS]
 (
-	[id] BIGINT NOT NULL PRIMARY KEY IDENTITY, 
-    [Nome] NVARCHAR(20) NOT NULL, 
-    [Descricao] NVARCHAR(255) NULL
+	[cd_projeto] BIGINT NOT NULL PRIMARY KEY IDENTITY, 
+    [nm_projeto] NVARCHAR(50) NOT NULL, 
+    [ds_projeto] NVARCHAR(MAX) NULL
 )
