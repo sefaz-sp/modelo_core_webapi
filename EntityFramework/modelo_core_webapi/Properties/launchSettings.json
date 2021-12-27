@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "modelo_core_webapi": {
+    "Modelo.Core.Entity.Webapi": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "api/projetos/status",

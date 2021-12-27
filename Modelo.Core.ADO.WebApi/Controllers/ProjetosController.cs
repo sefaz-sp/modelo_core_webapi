@@ -7,8 +7,6 @@ using Modelo.Core.Domain.Interfaces;
 using Modelo.Core.Service.Validators;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Modelo.Core.ADO.WebApi.Controllers
 {
@@ -130,6 +128,32 @@ namespace Modelo.Core.ADO.WebApi.Controllers
                 var model = projeto.ToModel();
 
             return Ok(model);
+        }
+
+        /// DELETE /api/projetos/{id}
+        /// <summary>
+        /// Exclui um projeto.
+        /// </summary>
+        /// <remarks>
+        /// Exemplo:
+        /// 
+        ///     DELETE /api/projetos/{id}
+        ///     
+        /// </remarks>
+        /// <returns>Dados de um projeto cadastrado</returns>
+        /// <response code="200">Retorna os dados de um projeto</response>
+        /// <response code="400">Erro ao processar solicitação</response>
+        /// <response code="404">Quando não existe projeto com o id informado</response>
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult<ProjetoModel> Excluir(int id)
+        {
+            _projetoService.Excluir(id);
+
+            return null;
+
         }
 
         /// PUT /api/projetos

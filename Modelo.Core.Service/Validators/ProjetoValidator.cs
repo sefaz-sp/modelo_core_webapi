@@ -1,8 +1,5 @@
 ﻿using FluentValidation;
 using Modelo.Core.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Modelo.Core.Service.Validators
 {

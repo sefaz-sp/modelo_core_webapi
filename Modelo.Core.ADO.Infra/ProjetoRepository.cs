@@ -15,6 +15,7 @@ namespace Modelo.Core.ADO.Infra
         private const string CONSULTAR = "USP_PROJETOS_SEL";
         private const string INCLUIR = "USP_PROJETOS_INS";
         private const string ALTERAR = "USP_PROJETOS_UPD";
+        private const string EXCLUIR = "USP_PROJETOS_DEL";
         private readonly IConfiguration _configuration;
 
         public ProjetoRepository(IConfiguration configuration)
@@ -67,10 +68,20 @@ namespace Modelo.Core.ADO.Infra
 
         public void Excluir(int id)
         {
-            throw new NotImplementedException();
+            using (var conn = new SqlConnection(_configuration.GetConnectionString(BANCO_DADOS)))
+            {
+                using (var cmd = new SqlCommand(EXCLUIR, conn))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@cd_projeto", id));
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
-        public void Incluir(ProjetoEntity obj)
+            public void Incluir(ProjetoEntity obj)
         {
             using (var conn = new SqlConnection(_configuration.GetConnectionString(BANCO_DADOS)))
             {

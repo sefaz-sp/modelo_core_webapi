@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 using Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using modelo.projetos;
-using modelo_core_webapi.Contexto;
+using Modelo.Core.Entity.Webapi.Contexto;
 using Microsoft.EntityFrameworkCore;
+using Modelo.Core.Domain.Entities;
 
-namespace modelo_core_webapi.Controllers
+namespace Modelo.Core.Entity.Webapi.Controllers
 {
     //[Authorize] //Retirado até que se descubra o porquê de não estar funcionando a autenticação da api
     [Route("api/[controller]")]
@@ -28,9 +28,9 @@ namespace modelo_core_webapi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Projetos>>> GetProjetos()
+        public async Task<ActionResult<IEnumerable<ProjetoEntity>>> GetProjetos()
         {
-            return await _context.Projetos.ToListAsync();
+            return await _context.ProjetoEntity.ToListAsync();
         }
 
         [HttpGet("status")]
@@ -65,7 +65,7 @@ namespace modelo_core_webapi.Controllers
             resultado += Configuration["ConnectionStrings:Projetos"];
             try
             {
-                var listaProjetos = await _context.Projetos.ToListAsync();
+                var listaProjetos = await _context.ProjetoEntity.ToListAsync();
                 resultado += " | Acesso ao banco de dados: Ok";
             }
             catch (Exception e)
@@ -78,19 +78,19 @@ namespace modelo_core_webapi.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Projetos>> GetProjetos(int id)
+        public async Task<ActionResult<ProjetoEntity>> GetProjetos(int id)
         {
             if (!ProjetoExists(id))
             {
                 return NotFound();
             }
-            var projetos = await _context.Projetos.FindAsync(id);
+            var projetos = await _context.ProjetoEntity.FindAsync(id);
 
             return projetos;
         }
 
         [HttpPut]
-        public async Task<ActionResult<Projetos>> PutProjetos(Projetos projetos)
+        public async Task<ActionResult<ProjetoEntity>> PutProjetos(ProjetoEntity projetos)
         {
             _context.Entry(projetos).State = EntityState.Modified;
 
@@ -99,24 +99,24 @@ namespace modelo_core_webapi.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Projetos>> PostProjetos(Projetos projetos)
+        public async Task<ActionResult<ProjetoEntity>> PostProjetos(ProjetoEntity projetos)
         {
-            _context.Projetos.Add(projetos);
+            _context.ProjetoEntity.Add(projetos);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetProjetos", new { id = projetos.Id }, projetos);
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Projetos>> DeleteProjetos(int id)
+        public async Task<ActionResult<ProjetoEntity>> DeleteProjetos(int id)
         {
             if (!ProjetoExists(id))
             {
                 return NotFound();
             }
 
-            var projetos = await _context.Projetos.FindAsync(id);
-            _context.Projetos.Remove(projetos);
+            var projetos = await _context.ProjetoEntity.FindAsync(id);
+            _context.ProjetoEntity.Remove(projetos);
             await _context.SaveChangesAsync();
 
             return projetos;
@@ -124,7 +124,7 @@ namespace modelo_core_webapi.Controllers
 
         private bool ProjetoExists(int id)
         {
-            return _context.Projetos.Any(e => e.Id == id);
+            return _context.ProjetoEntity.Any(e => e.Id == id);
         }
     }
 }

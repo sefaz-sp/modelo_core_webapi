@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace modelo_core_webapi
+namespace Modelo.Core.Entity.Webapi
 {
     public class Program
     {

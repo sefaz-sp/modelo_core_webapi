@@ -1,8 +1,6 @@
 ﻿using Modelo.Core.Domain.Exceptions;
 using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Text;
 
 namespace Modelo.Core.ADO.Infra.Util
 {

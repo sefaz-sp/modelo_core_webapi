@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Modelo.Core.Domain.Entities
+﻿namespace Modelo.Core.Domain.Entities
 {
     public class ProjetoEntity : BaseEntity
     {

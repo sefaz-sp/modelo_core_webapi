@@ -12,5 +12,9 @@
     <PackageReference Include="Sefaz.Lgpd.Mascarador" Version="1.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Modelo.Core.Domain\Modelo.Core.Domain.csproj" />
+  </ItemGroup>
+
 
 </Project>
