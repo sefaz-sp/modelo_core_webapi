@@ -9,13 +9,13 @@ namespace Modelo.Core.Entity.Webapi.Persistencia
         public void Configure(EntityTypeBuilder<ProjetoEntity> builder)
         {
             builder
-                .Property(l => l.Nome)
+                .Property(l => l.nm_projeto)
                 .HasColumnType("nvarchar(20)")
                 .IsRequired()
                 .HasMaxLength(20);
 
             builder
-                .Property(l => l.Descricao)
+                .Property(l => l.ds_projeto)
                 .HasColumnType("nvarchar(255)");
         }
     }

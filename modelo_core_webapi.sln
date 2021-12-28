@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.1.31911.260
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32002.261
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{33D18782-17D0-4997-96A1-BA4794CE180D}"
 	ProjectSection(SolutionItems) = preProject
@@ -10,34 +10,34 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EntityFramework", "EntityFramework", "{F50182AC-FA46-4BF4-A1AC-DBC9F721810F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modelo.Core.Entity.Webapi", "EntityFramework\modelo_core_webapi\Modelo.Core.Entity.Webapi.csproj", "{8EBA5C09-BE66-41F4-B08F-BC1F17073DC4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modelo.Core.Entity.Webapi", "EntityFramework\Modelo_Core_Entity_Webapi\Modelo.Core.Entity.Webapi.csproj", "{8EBA5C09-BE66-41F4-B08F-BC1F17073DC4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ADO", "ADO", "{109AAA7C-E5A9-4A72-8BB9-52455C8FB02D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modelo.Core.ADO.WebApi", "Modelo.Core.ADO.WebApi\Modelo.Core.ADO.WebApi.csproj", "{DA8F742C-2A42-44DB-80BA-68417F808AD7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modelo.Core.ADO.WebApi", "ADO\Modelo.Core.ADO.WebApi\Modelo.Core.ADO.WebApi.csproj", "{DA8F742C-2A42-44DB-80BA-68417F808AD7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modelo.Core.ADO.Infra",  "ADO\Modelo.Core.ADO.Infra\Modelo.Core.ADO.Infra.csproj", "{269E2341-AE26-4054-A9A6-4B7F762EAAD6}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Modelo.Core.ADO.Db",     "ADO\Modelo.Core.ADO.Db\Modelo.Core.ADO.Db.sqlproj", "{4B3348E5-9FA8-46AF-A3E9-3732A14654A7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{A1F2BF5C-D6FC-4F27-9A79-48766C72446F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modelo.Core.Domain", "Modelo.Core.Domain\Modelo.Core.Domain.csproj", "{75E81FB8-9AB6-4882-B31E-836AE72EEB74}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modelo.Core.Domain",  "Domain\Modelo.Core.Domain\Modelo.Core.Domain.csproj", "{75E81FB8-9AB6-4882-B31E-836AE72EEB74}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modelo.Core.ADO.Infra", "Modelo.Core.ADO.Infra\Modelo.Core.ADO.Infra.csproj", "{269E2341-AE26-4054-A9A6-4B7F762EAAD6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modelo.Core.Service", "Domain\Modelo.Core.Service\Modelo.Core.Service.csproj", "{064DE3AA-9377-4B52-9059-B31E39A7E15F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modelo.Core.Service", "Modelo.Core.Service\Modelo.Core.Service.csproj", "{064DE3AA-9377-4B52-9059-B31E39A7E15F}"
-EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Modelo.Core.ADO.Db", "Modelo.Core.ADO.Db\Modelo.Core.ADO.Db.sqlproj", "{4B3348E5-9FA8-46AF-A3E9-3732A14654A7}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{C259117E-947C-4E3A-8E00-7C0911F7CBC5}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{64EF27EE-A8BC-4215-BE83-54263BA71DA6}"
 	ProjectSection(SolutionItems) = preProject
-		EntityFramework\modelo_core_webapi\docker\.dockerignore = EntityFramework\modelo_core_webapi\docker\.dockerignore
-		EntityFramework\modelo_core_webapi\docker\CA.crt = EntityFramework\modelo_core_webapi\docker\CA.crt
-		EntityFramework\modelo_core_webapi\docker\dockerfile = EntityFramework\modelo_core_webapi\docker\dockerfile
-		EntityFramework\modelo_core_webapi\docker\entrypoint.sh = EntityFramework\modelo_core_webapi\docker\entrypoint.sh
-		EntityFramework\modelo_core_webapi\docker\k8s.deployment.json = EntityFramework\modelo_core_webapi\docker\k8s.deployment.json
-		EntityFramework\modelo_core_webapi\docker\k8s.ingress.json = EntityFramework\modelo_core_webapi\docker\k8s.ingress.json
-		EntityFramework\modelo_core_webapi\docker\k8s.ingress.tls.json = EntityFramework\modelo_core_webapi\docker\k8s.ingress.tls.json
-		EntityFramework\modelo_core_webapi\docker\k8s.service.json = EntityFramework\modelo_core_webapi\docker\k8s.service.json
-		EntityFramework\modelo_core_webapi\docker\krb5.conf = EntityFramework\modelo_core_webapi\docker\krb5.conf
-		EntityFramework\modelo_core_webapi\docker\krenew.sh = EntityFramework\modelo_core_webapi\docker\krenew.sh
+		docker\.dockerignore = docker\.dockerignore
+		docker\CA.crt = docker\CA.crt
+		docker\dockerfile = docker\dockerfile
+		docker\entrypoint.sh = docker\entrypoint.sh
+		docker\k8s.deployment.json = docker\k8s.deployment.json
+		docker\k8s.ingress.json = docker\k8s.ingress.json
+		docker\k8s.ingress.tls.json = docker\k8s.ingress.tls.json
+		docker\k8s.service.json = docker\k8s.service.json
+		docker\krb5.conf = docker\krb5.conf
+		docker\krenew.sh = docker\krenew.sh
 	EndProjectSection
 EndProject
 Global
@@ -83,7 +83,7 @@ Global
 		{269E2341-AE26-4054-A9A6-4B7F762EAAD6} = {109AAA7C-E5A9-4A72-8BB9-52455C8FB02D}
 		{064DE3AA-9377-4B52-9059-B31E39A7E15F} = {A1F2BF5C-D6FC-4F27-9A79-48766C72446F}
 		{4B3348E5-9FA8-46AF-A3E9-3732A14654A7} = {109AAA7C-E5A9-4A72-8BB9-52455C8FB02D}
-		{C259117E-947C-4E3A-8E00-7C0911F7CBC5} = {33D18782-17D0-4997-96A1-BA4794CE180D}
+		{64EF27EE-A8BC-4215-BE83-54263BA71DA6} = {33D18782-17D0-4997-96A1-BA4794CE180D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {26869E23-C687-4B98-9370-75F434C8AAE7}

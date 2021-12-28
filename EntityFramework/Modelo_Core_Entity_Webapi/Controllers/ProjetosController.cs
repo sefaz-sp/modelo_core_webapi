@@ -77,14 +77,14 @@ namespace Modelo.Core.Entity.Webapi.Controllers
             return resultado;
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<ProjetoEntity>> GetProjetos(int id)
+        [HttpGet("{cd_projeto}")]
+        public async Task<ActionResult<ProjetoEntity>> GetProjetos(int cd_projeto)
         {
-            if (!ProjetoExists(id))
+            if (!ProjetoExists(cd_projeto))
             {
                 return NotFound();
             }
-            var projetos = await _context.ProjetoEntity.FindAsync(id);
+            var projetos = await _context.ProjetoEntity.FindAsync(cd_projeto);
 
             return projetos;
         }
@@ -104,27 +104,27 @@ namespace Modelo.Core.Entity.Webapi.Controllers
             _context.ProjetoEntity.Add(projetos);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetProjetos", new { id = projetos.Id }, projetos);
+            return CreatedAtAction("GetProjetos", new { cd_projeto = projetos.cd_projeto }, projetos);
         }
 
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<ProjetoEntity>> DeleteProjetos(int id)
+        [HttpDelete("{cd_projeto}")]
+        public async Task<ActionResult<ProjetoEntity>> DeleteProjetos(int cd_projeto)
         {
-            if (!ProjetoExists(id))
+            if (!ProjetoExists(cd_projeto))
             {
                 return NotFound();
             }
 
-            var projetos = await _context.ProjetoEntity.FindAsync(id);
+            var projetos = await _context.ProjetoEntity.FindAsync(cd_projeto);
             _context.ProjetoEntity.Remove(projetos);
             await _context.SaveChangesAsync();
 
             return projetos;
         }
 
-        private bool ProjetoExists(int id)
+        private bool ProjetoExists(int cd_projeto)
         {
-            return _context.ProjetoEntity.Any(e => e.Id == id);
+            return _context.ProjetoEntity.Any(e => e.cd_projeto == cd_projeto);
         }
     }
 }

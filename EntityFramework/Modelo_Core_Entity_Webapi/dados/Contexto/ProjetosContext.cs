@@ -17,7 +17,7 @@ namespace Modelo.Core.Entity.Webapi.Contexto
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration<ProjetoEntity>(new ProjetosDBConfig());
-            modelBuilder.Entity<ProjetoEntity>().HasKey(t => t.Id);
+            modelBuilder.Entity<ProjetoEntity>().HasKey(t => t.cd_projeto);
         }
     }
 }

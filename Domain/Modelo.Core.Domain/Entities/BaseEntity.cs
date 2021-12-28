@@ -2,6 +2,6 @@
 {
     public abstract class BaseEntity
     {
-        public virtual long Id { get; set; }
+        public virtual long cd_projeto { get; set; }
     }
 }

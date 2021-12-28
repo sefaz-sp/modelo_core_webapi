@@ -5,7 +5,6 @@ using Modelo.Core.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
 
 namespace Modelo.Core.ADO.Infra
 {
@@ -30,9 +29,9 @@ namespace Modelo.Core.ADO.Infra
                 using (var cmd = new SqlCommand(ALTERAR, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@cd_projeto", obj.Id));
-                    cmd.Parameters.Add(new SqlParameter("@nm_projeto", obj.Nome));
-                    cmd.Parameters.Add(new SqlParameter("@ds_projeto", obj.Descricao));
+                    cmd.Parameters.Add(new SqlParameter("@cd_projeto", obj.cd_projeto));
+                    cmd.Parameters.Add(new SqlParameter("@nm_projeto", obj.nm_projeto));
+                    cmd.Parameters.Add(new SqlParameter("@ds_projeto", obj.ds_projeto));
 
                     var projeto = new ProjetoEntity();
                     conn.Open();
@@ -41,14 +40,14 @@ namespace Modelo.Core.ADO.Infra
             }
         }
 
-        public ProjetoEntity Consultar(long id)
+        public ProjetoEntity Consultar(long cd_projeto)
         {
             using (var conn = new SqlConnection(_configuration.GetConnectionString(BANCO_DADOS)))
             {
                 using (var cmd = new SqlCommand(CONSULTAR, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@cd_projeto", id));
+                    cmd.Parameters.Add(new SqlParameter("@cd_projeto", cd_projeto));
 
                     var projeto = new ProjetoEntity();
                     conn.Open();
@@ -66,14 +65,14 @@ namespace Modelo.Core.ADO.Infra
             }
         }
 
-        public void Excluir(int id)
+        public void Excluir(int cd_projeto)
         {
             using (var conn = new SqlConnection(_configuration.GetConnectionString(BANCO_DADOS)))
             {
                 using (var cmd = new SqlCommand(EXCLUIR, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@cd_projeto", id));
+                    cmd.Parameters.Add(new SqlParameter("@cd_projeto", cd_projeto));
 
                     conn.Open();
                     cmd.ExecuteNonQuery();
@@ -88,12 +87,12 @@ namespace Modelo.Core.ADO.Infra
                 using (var cmd = new SqlCommand(INCLUIR, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@nm_projeto", obj.Nome));
-                    cmd.Parameters.Add(new SqlParameter("@ds_projeto", obj.Descricao));
+                    cmd.Parameters.Add(new SqlParameter("@nm_projeto", obj.nm_projeto));
+                    cmd.Parameters.Add(new SqlParameter("@ds_projeto", obj.ds_projeto));
 
                     var projeto = new ProjetoEntity();
                     conn.Open();
-                    obj.Id = cmd.ExecuteNonQuery();
+                    obj.cd_projeto = cmd.ExecuteNonQuery();
                 }
             }
         }
@@ -127,9 +126,9 @@ namespace Modelo.Core.ADO.Infra
 
             return new ProjetoEntity
             {
-                Id = safeReader.Get<Int64>("cd_projeto", Int64.MinValue),
-                Descricao = reader["ds_projeto"].ToString(),
-                Nome = reader["nm_projeto"].ToString()
+                cd_projeto = safeReader.Get<Int64>("cd_projeto", Int64.MinValue),
+                nm_projeto = reader["nm_projeto"].ToString(),
+                ds_projeto = reader["ds_projeto"].ToString()
             };
         }
     }

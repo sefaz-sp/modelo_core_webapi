@@ -7,7 +7,7 @@ namespace Modelo.Core.Service.Validators
     {
         public ProjetoValidator()
         {
-            RuleFor(x => x.Nome)
+            RuleFor(x => x.nm_projeto)
                 .NotEmpty().WithMessage("O campo nome é obrigatório")
                 .NotNull().WithMessage("O campo nome é obrigatório");
         }

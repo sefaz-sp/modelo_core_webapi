@@ -7,10 +7,10 @@ namespace Modelo.Core.ADO.WebApi.Models
 {
     public class ProjetoModel
     {
-        public long Id { get; set; }
+        public long cd_projeto { get; set; }
 
-        public string Nome { get; set; }
-        public string Descricao { get; set; }
+        public string nm_projeto { get; set; }
+        public string ds_projeto { get; set; }
 
         public StringContent ToJson()
         {
@@ -26,9 +26,9 @@ namespace Modelo.Core.ADO.WebApi.Models
             {
                 return new ProjetoModel
                 {
-                    Descricao = obj.Descricao,
-                    Id = obj.Id,
-                    Nome = obj.Nome
+                    ds_projeto = obj.ds_projeto,
+                    cd_projeto = obj.cd_projeto,
+                    nm_projeto = obj.nm_projeto
                 };
             }
 
@@ -41,9 +41,9 @@ namespace Modelo.Core.ADO.WebApi.Models
             {
                 return new ProjetoEntity
                 {
-                    Descricao = obj.Descricao,
-                    Id = obj.Id,
-                    Nome = obj.Nome
+                    ds_projeto = obj.ds_projeto,
+                    cd_projeto = obj.cd_projeto,
+                    nm_projeto = obj.nm_projeto
                 };
             }
 

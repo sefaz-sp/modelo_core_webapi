@@ -4,8 +4,8 @@ namespace Modelo.Core.ADO.WebApi.Models
 {
     public class NovoProjetoModel
     {
-        public string Nome { get; set; }
-        public string Descricao { get; set; }
+        public string nm_projeto { get; set; }
+        public string ds_projeto { get; set; }
     }
 
     public static class NovoProjetoModelExtension
@@ -16,8 +16,8 @@ namespace Modelo.Core.ADO.WebApi.Models
             {
                 return new NovoProjetoModel
                 {
-                    Descricao = obj.Descricao,
-                    Nome = obj.Nome
+                    ds_projeto = obj.ds_projeto,
+                    nm_projeto = obj.nm_projeto
                 };
             }
 
@@ -30,8 +30,8 @@ namespace Modelo.Core.ADO.WebApi.Models
             {
                 return new ProjetoEntity
                 {
-                    Descricao = obj.Descricao,
-                    Nome = obj.Nome
+                    ds_projeto = obj.ds_projeto,
+                    nm_projeto = obj.nm_projeto
                 };
             }
 

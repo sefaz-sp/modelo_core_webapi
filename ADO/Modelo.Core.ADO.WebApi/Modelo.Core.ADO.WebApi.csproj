@@ -14,9 +14,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Modelo.Core.ADO.Infra\Modelo.Core.ADO.Infra.csproj" />
-    <ProjectReference Include="..\Modelo.Core.Domain\Modelo.Core.Domain.csproj" />
-    <ProjectReference Include="..\Modelo.Core.Service\Modelo.Core.Service.csproj" />
+    <ProjectReference Include="..\..\ADO\Modelo.Core.ADO.Infra\Modelo.Core.ADO.Infra.csproj" />
+    <ProjectReference Include="..\..\Domain\Modelo.Core.Domain\Modelo.Core.Domain.csproj" />
+    <ProjectReference Include="..\..\Domain\Modelo.Core.Service\Modelo.Core.Service.csproj" />
   </ItemGroup>
 
 </Project>

@@ -98,29 +98,29 @@ namespace Modelo.Core.ADO.WebApi.Controllers
         //    return resultado;
         //}
 
-        /// GET /api/projetos/{id}
+        /// GET /api/projetos/{cd_projeto}
         /// <summary>
         /// Consulta um projeto.
         /// </summary>
         /// <remarks>
         /// Exemplo:
         /// 
-        ///     GET /api/projetos/{id}
+        ///     GET /api/projetos/{cd_projeto}
         ///     
         /// </remarks>
         /// <returns>Dados de um projeto cadastrado</returns>
         /// <response code="200">Retorna os dados de um projeto</response>
         /// <response code="400">Erro ao processar solicitação</response>
-        /// <response code="404">Quando não existe projeto com o id informado</response>
-        [HttpGet("{id}")]
+        /// <response code="404">Quando não existe projeto com o cd_projeto informado</response>
+        [HttpGet("{cd_projeto}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult<ProjetoModel> Consultar(int id)
+        public ActionResult<ProjetoModel> Consultar(int cd_projeto)
         {
-            var projeto = _projetoService.Consultar(id);
+            var projeto = _projetoService.Consultar(cd_projeto);
 
-            if (projeto == null || projeto.Id == 0)
+            if (projeto == null || projeto.cd_projeto == 0)
             {
                 return NotFound();
             }
@@ -130,27 +130,27 @@ namespace Modelo.Core.ADO.WebApi.Controllers
             return Ok(model);
         }
 
-        /// DELETE /api/projetos/{id}
+        /// DELETE /api/projetos/{cd_projeto}
         /// <summary>
         /// Exclui um projeto.
         /// </summary>
         /// <remarks>
         /// Exemplo:
         /// 
-        ///     DELETE /api/projetos/{id}
+        ///     DELETE /api/projetos/{cd_projeto}
         ///     
         /// </remarks>
         /// <returns>Dados de um projeto cadastrado</returns>
         /// <response code="200">Retorna os dados de um projeto</response>
         /// <response code="400">Erro ao processar solicitação</response>
-        /// <response code="404">Quando não existe projeto com o id informado</response>
-        [HttpDelete("{id}")]
+        /// <response code="404">Quando não existe projeto com o cd_projeto informado</response>
+        [HttpDelete("{cd_projeto}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult<ProjetoModel> Excluir(int id)
+        public ActionResult<ProjetoModel> Excluir(int cd_projeto)
         {
-            _projetoService.Excluir(id);
+            _projetoService.Excluir(cd_projeto);
 
             return null;
 
@@ -204,7 +204,7 @@ namespace Modelo.Core.ADO.WebApi.Controllers
 
             var data = projeto.ToEntity();
 
-            return Executar( () => _projetoService.Incluir<ProjetoValidator>(data).Id);
+            return Executar( () => _projetoService.Incluir<ProjetoValidator>(data).cd_projeto);
         }
 
         private ActionResult Executar(Func<object> func)
