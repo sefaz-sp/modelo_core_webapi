@@ -6,7 +6,7 @@ namespace Modelo.Core.Entity.Webapi.Contexto
 {
     public class ProjetosContext : DbContext
     {
-        public DbSet<ProjetoEntity> ProjetoEntity { get; set; }
+        public DbSet<ProjetoEntity> projetoEntity { get; set; }
 
         public ProjetosContext(DbContextOptions<ProjetosContext> options)
             : base(options)
@@ -16,7 +16,7 @@ namespace Modelo.Core.Entity.Webapi.Contexto
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.ApplyConfiguration<ProjetoEntity>(new ProjetosDBConfig());
+            modelBuilder.ApplyConfiguration(new ProjetosDBConfig());
             modelBuilder.Entity<ProjetoEntity>().HasKey(t => t.cd_projeto);
         }
     }
