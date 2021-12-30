@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using modelo.projetos;
-using Modelo_Core_Entity_Webapi.Persistencia;
+using Modelo.Core.Entity.Webapi.Persistencia;
 
-namespace Modelo_Core_Entity_Webapi.Contexto
+namespace Modelo.Core.Entity.Webapi.Contexto
 {
     public class ProjetosContext : DbContext
     {

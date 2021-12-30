@@ -7,9 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using modelo.projetos;
-using Modelo_Core_Entity_Webapi.Contexto;
+using Modelo.Core.Entity.Webapi.Contexto;
 
-namespace Modelo_Core_Entity_Webapi.Controllers
+namespace Modelo.Core.Entity.Webapi.Controllers
 {
     //[Authorize] //Retirado até que se descubra o porquê de não estar funcionando a autenticação da api
     [Route("api/[controller]")]
