@@ -38,7 +38,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{64EF27
 		docker\krenew.sh = docker\krenew.sh
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modelo.Core.Entity.Webapi", "EntityFramework\Modelo_Core_Entity_Webapi\Modelo.Core.Entity.Webapi.csproj", "{9F0C7B3D-7B4F-4FA3-88F1-01FD05BEAC7E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modelo.Core.Entity.Webapi", "EntityFramework\Modelo.Core.Entity.Webapi\Modelo.Core.Entity.Webapi.csproj", "{9F0C7B3D-7B4F-4FA3-88F1-01FD05BEAC7E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
