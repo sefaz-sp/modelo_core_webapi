@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Modelo.Core.Entity.Webapi.Contexto;
-using Modelo.Core.Domain.Entities;
+using Modelo.Core.Entity.Webapi.Models;
 
 namespace Modelo.Core.Entity.Webapi.Controllers
 {
@@ -28,9 +28,9 @@ namespace Modelo.Core.Entity.Webapi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProjetoEntity>>> GetProjetos()
+        public async Task<ActionResult<IEnumerable<ProjetoModel>>> GetProjetos()
         {
-            return await _context.projetoEntity.ToListAsync();
+            return await _context.ProjetoModel.ToListAsync();
         }
 
         [HttpGet("status")]
@@ -65,7 +65,7 @@ namespace Modelo.Core.Entity.Webapi.Controllers
             resultado += Configuration["ConnectionStrings:Projetos"];
             try
             {
-                var listaProjetos = await _context.projetoEntity.ToListAsync();
+                var listaProjetos = await _context.ProjetoEntity.ToListAsync();
                 resultado += " | Acesso ao banco de dados: Ok";
             }
             catch (Exception e)
@@ -78,19 +78,19 @@ namespace Modelo.Core.Entity.Webapi.Controllers
         }
 
         [HttpGet("{cd_projeto}")]
-        public async Task<ActionResult<ProjetoEntity>> GetProjetos(int cd_projeto)
+        public async Task<ActionResult<ProjetoModel>> GetProjetos(int cd_projeto)
         {
             if (!ProjetoExists(cd_projeto))
             {
                 return NotFound();
             }
-            var projetos = await _context.projetoEntity.FindAsync(cd_projeto);
+            var projetos = await _context.ProjetoEntity.FindAsync(cd_projeto);
 
             return projetos;
         }
 
         [HttpPut]
-        public async Task<ActionResult<ProjetoEntity>> PutProjetos(ProjetoEntity projetos)
+        public async Task<ActionResult<ProjetoModel>> PutProjetos(ProjetoModel projetos)
         {
             _context.Entry(projetos).State = EntityState.Modified;
 
@@ -99,24 +99,24 @@ namespace Modelo.Core.Entity.Webapi.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ProjetoEntity>> PostProjetos(ProjetoEntity projetos)
+        public async Task<ActionResult<ProjetoModel>> PostProjetos(ProjetoModel projetos)
         {
-            _context.projetoEntity.Add(projetos);
+            _context.ProjetoEntity.Add(projetos);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetProjetos", new { cd_projeto = projetos.cd_projeto }, projetos);
         }
 
         [HttpDelete("{cd_projeto}")]
-        public async Task<ActionResult<ProjetoEntity>> DeleteProjetos(int cd_projeto)
+        public async Task<ActionResult<ProjetoModel>> DeleteProjetos(int cd_projeto)
         {
             if (!ProjetoExists(cd_projeto))
             {
                 return NotFound();
             }
 
-            var projetos = await _context.projetoEntity.FindAsync(cd_projeto);
-            _context.projetoEntity.Remove(projetos);
+            var projetos = await _context.ProjetoEntity.FindAsync(cd_projeto);
+            _context.ProjetoEntity.Remove(projetos);
             await _context.SaveChangesAsync();
 
             return projetos;
@@ -124,7 +124,7 @@ namespace Modelo.Core.Entity.Webapi.Controllers
 
         private bool ProjetoExists(int cd_projeto)
         {
-            return _context.projetoEntity.Any(e => e.cd_projeto == cd_projeto);
+            return _context.ProjetoEntity.Any(e => e.cd_projeto == cd_projeto);
         }
     }
 }

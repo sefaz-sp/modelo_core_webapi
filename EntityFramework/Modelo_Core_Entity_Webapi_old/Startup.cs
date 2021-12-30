@@ -6,9 +6,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Identity;
 using Microsoft.EntityFrameworkCore;
-using Modelo_Core_Entity_Webapi.Contexto;
+using Modelo.Core.Entity.Webapi.Contexto;
 
-namespace Modelo_Core_Entity_Webapi
+namespace Modelo.Core.Entity.Webapi
 {
     public class Startup
     {

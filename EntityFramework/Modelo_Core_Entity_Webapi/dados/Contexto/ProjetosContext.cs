@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Modelo.Core.Entity.Webapi.Persistencia;
-using Modelo.Core.Domain.Entities;
+using modelo.projetos;
+using Modelo_Core_Entity_Webapi.Persistencia;
 
-namespace Modelo.Core.Entity.Webapi.Contexto
+namespace Modelo_Core_Entity_Webapi.Contexto
 {
     public class ProjetosContext : DbContext
     {
-        public DbSet<ProjetoEntity> projetoEntity { get; set; }
+        public DbSet<Projetos> Projetos { get; set; }
 
         public ProjetosContext(DbContextOptions<ProjetosContext> options)
             : base(options)
@@ -16,8 +16,8 @@ namespace Modelo.Core.Entity.Webapi.Contexto
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.ApplyConfiguration(new ProjetosDBConfig());
-            modelBuilder.Entity<ProjetoEntity>().HasKey(t => t.cd_projeto);
+            modelBuilder.ApplyConfiguration<Projetos>(new ProjetosDBConfig());
+            modelBuilder.Entity<Projetos>().HasKey(t => t.cd_projeto);
         }
     }
 }

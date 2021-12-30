@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using modelo.projetos;
+using Modelo.Core.Domain.Entities;
 
-namespace Modelo_Core_Entity_Webapi.Persistencia
+namespace Modelo.Core.Entity.Webapi.Persistencia
 {
-    internal class ProjetosDBConfig : IEntityTypeConfiguration<Projetos>
+    internal class ProjetosDBConfig : IEntityTypeConfiguration<ProjetoEntity>
     {
-        public void Configure(EntityTypeBuilder<Projetos> builder)
+        public void Configure(EntityTypeBuilder<ProjetoEntity> builder)
         {
             builder
                 .Property(l => l.nm_projeto)
