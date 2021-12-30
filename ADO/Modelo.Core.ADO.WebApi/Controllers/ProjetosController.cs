@@ -54,49 +54,37 @@ namespace Modelo.Core.ADO.WebApi.Controllers
             return Ok(model);
         }
 
-        //[HttpGet("status")]
-        //public ActionResult<string> TesteAcesso()
-        //{
-        //    var resultado = "Informações da API - "
-        //                    + "build: " + Configuration["dadosdeploy:build"]
-        //                    + " | release: " + Configuration["dadosdeploy:release"]
-        //                    + " | ambiente: " + Configuration["dadosdeploy:ambiente"]
-        //                    + " | tipo de deploy: " + Configuration["dadosdeploy:tipodeploy"]
-        //                    + " | plataforma: " + Configuration["dadosdeploy:plataforma"];
+        [HttpGet("status")]
+        public ActionResult<string> TesteAcesso()
+        {
+            var resultado = "Informações da API - "
+                            + "build: " + _configuration["dadosdeploy:build"]
+                            + " | release: " + _configuration["dadosdeploy:release"]
+                            + " | ambiente: " + _configuration["dadosdeploy:ambiente"]
+                            + " | tipo de deploy: " + _configuration["dadosdeploy:tipodeploy"]
+                            + " | plataforma: " + _configuration["dadosdeploy:plataforma"];
 
-        //    if (_usuario != null && !string.IsNullOrEmpty(_usuario.Login))
-        //    {
-        //        resultado += " || " + "Usuário que chamou a api: "
-        //            + "Login " + _usuario.Login
-        //            + " - Nome " + _usuario.Nome
-        //            + " - Doc " + _usuario.DocumentoIdentificacao;
-        //    }
-        //    else
-        //    {
-        //        resultado += " || " + "Nenhum usuário autenticado. ";
-        //    }
+            return resultado;
+        }
 
-        //    return resultado;
-        //}
+        [HttpGet("conexao")]
+        public ActionResult<string> TesteConexao()
+        {
+            var resultado = "Informações de conexão: ";
+            resultado += _configuration["ConnectionStrings:DB_APLICACAO_MODELO"];
+            try
+            {
+                var listaProjetos = Listar();
+                resultado += " | Acesso ao banco de dados: Ok";
+            }
+            catch (Exception e)
+            {
 
-        //[HttpGet("conexao")]
-        //public async Task<ActionResult<string>> TesteConexao()
-        //{
-        //    var resultado = "Informações de conexão: ";
-        //    resultado += Configuration["ConnectionStrings:Projetos"];
-        //    try
-        //    {
-        //        var listaProjetos = await _context.Projetos.ToListAsync();
-        //        resultado += " | Acesso ao banco de dados: Ok";
-        //    }
-        //    catch (Exception e)
-        //    {
-
-        //        if (e.Source != null)
-        //            resultado += " | Falha de acesso ao banco de dados: " + e.ToString();
-        //    }
-        //    return resultado;
-        //}
+                if (e.Source != null)
+                    resultado += " | Falha de acesso ao banco de dados: " + e.ToString();
+            }
+            return resultado;
+        }
 
         /// GET /api/projetos/{cd_projeto}
         /// <summary>
