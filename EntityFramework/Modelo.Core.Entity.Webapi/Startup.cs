@@ -26,7 +26,7 @@ namespace Modelo.Core.Entity.Webapi
             services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<Usuario>();
 
-            services.AddDbContext<ProjetosContext>(options => { options.UseSqlServer(Configuration.GetConnectionString("Projetos")); });
+            services.AddDbContext<ProjetosContext>(options => { options.UseSqlServer(Configuration.GetConnectionString("DB_APLICACAO_MODELO")); });
             services.AddApplicationInsightsTelemetry(Configuration["APPINSIGHTS_CONNECTIONSTRING"]);
         }
 

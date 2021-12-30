@@ -17,13 +17,13 @@ namespace Modelo.Core.Entity.Webapi.Controllers
     public class ProjetosController : ControllerBase
     {
         private readonly ProjetosContext _context;
-        private IConfiguration Configuration;
+        private IConfiguration _configuration;
         private Usuario _usuario { get; }
 
         public ProjetosController(ProjetosContext context, IConfiguration configuration, Usuario usuario)
         {
             _context = context;
-            Configuration = configuration;
+            _configuration = configuration;
             _usuario = usuario;
         }
 
@@ -37,11 +37,11 @@ namespace Modelo.Core.Entity.Webapi.Controllers
         public ActionResult<string> TesteAcesso()
         {
             var resultado = "Informações da API - "
-                            + "build: " + Configuration["dadosdeploy:build"]
-                            + " | release: " + Configuration["dadosdeploy:release"]
-                            + " | ambiente: " + Configuration["dadosdeploy:ambiente"]
-                            + " | tipo de deploy: " + Configuration["dadosdeploy:tipodeploy"]
-                            + " | plataforma: " + Configuration["dadosdeploy:plataforma"];
+                            + "build: " + _configuration["dadosdeploy:build"]
+                            + " | release: " + _configuration["dadosdeploy:release"]
+                            + " | ambiente: " + _configuration["dadosdeploy:ambiente"]
+                            + " | tipo de deploy: " + _configuration["dadosdeploy:tipodeploy"]
+                            + " | plataforma: " + _configuration["dadosdeploy:plataforma"];
 
             if (_usuario != null && !string.IsNullOrEmpty(_usuario.Login))
             {
@@ -62,7 +62,7 @@ namespace Modelo.Core.Entity.Webapi.Controllers
         public async Task<ActionResult<string>> TesteConexao()
         {
             var resultado = "Informações de conexão: ";
-            resultado += Configuration["ConnectionStrings:Projetos"];
+            resultado += _configuration["ConnectionStrings:DB_APLICACAO_MODELO"];
             try
             {
                 var listaProjetos = await _context.Projetos.ToListAsync();
