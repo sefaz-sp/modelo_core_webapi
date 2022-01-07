@@ -1,3 +1,3 @@
 #!/bin/sh
 sh ./krenew.sh&
-/usr/bin/dotnet modelo_core_webapi.dll
+/usr/bin/dotnet __entrypoint__.dll
