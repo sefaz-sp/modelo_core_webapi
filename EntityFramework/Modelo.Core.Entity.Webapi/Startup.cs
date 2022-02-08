@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Identity;
 using Microsoft.EntityFrameworkCore;
 using Modelo.Core.Entity.Webapi.Contexto;
+using Microsoft.Identity.Web;
 
 namespace Modelo.Core.Entity.Webapi
 {
@@ -28,6 +28,22 @@ namespace Modelo.Core.Entity.Webapi
 
             services.AddDbContext<ProjetosContext>(options => { options.UseSqlServer(Configuration.GetConnectionString("DB_APLICACAO_MODELO")); });
             services.AddApplicationInsightsTelemetry(Configuration["APPINSIGHTS_CONNECTIONSTRING"]);
+
+            IdentityConfig identityConfig = new IdentityConfig(Configuration);
+            var opcoesAutenticacao = identityConfig.AuthenticationOptions;
+
+            services.AddAuthentication(opcoesAutenticacao)
+                    .AddMicrosoftIdentityWebApp(Configuration.GetSection("AzureAd"));
+
+            //services
+            //    .AddAuthentication("Bearer")
+            //    .AddIdentityServerAuthentication(options =>
+            //    {
+            //        options.ApiName = Configuration["ClientId"];
+            //        options.ApiSecret = Configuration[""];
+            //        options.Authority = Configuration["Instance"];
+            //        options.RequireHttpsMetadata = false;
+            //    });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,6 +68,7 @@ namespace Modelo.Core.Entity.Webapi
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

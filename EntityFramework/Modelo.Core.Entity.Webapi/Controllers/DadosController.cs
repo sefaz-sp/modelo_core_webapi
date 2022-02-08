@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -11,7 +12,7 @@ using Modelo.Core.Entity.Webapi.Contexto;
 
 namespace Modelo.Core.Entity.Webapi.Controllers
 {
-    //[Authorize] //Retirado até que se descubra o porquê de não estar funcionando a autenticação da api
+    [Authorize] //Retirado até que se descubra o porquê de não estar funcionando a autenticação da api
     [Route("api/[controller]")]
     [ApiController]
     public class ProjetosController : ControllerBase
@@ -27,12 +28,14 @@ namespace Modelo.Core.Entity.Webapi.Controllers
             _usuario = usuario;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Projetos>>> GetProjetos()
         {
             return await _context.Projetos.ToListAsync();
         }
 
+        [AllowAnonymous]
         [HttpGet("status")]
         public ActionResult<string> TesteAcesso()
         {
@@ -58,6 +61,7 @@ namespace Modelo.Core.Entity.Webapi.Controllers
             return resultado;
         }
 
+        [AllowAnonymous]
         [HttpGet("conexao")]
         public async Task<ActionResult<string>> TesteConexao()
         {
