@@ -29,11 +29,11 @@ namespace Modelo.Core.Entity.Webapi
             services.AddDbContext<ProjetosContext>(options => { options.UseSqlServer(Configuration.GetConnectionString("DB_APLICACAO_MODELO")); });
             services.AddApplicationInsightsTelemetry(Configuration["APPINSIGHTS_CONNECTIONSTRING"]);
 
-            IdentityConfig identityConfig = new IdentityConfig(Configuration);
-            var opcoesAutenticacao = identityConfig.AuthenticationOptions;
+            //IdentityConfig identityConfig = new IdentityConfig(Configuration);
+            //var opcoesAutenticacao = identityConfig.AuthenticationOptions;
 
-            services.AddAuthentication(opcoesAutenticacao)
-                    .AddMicrosoftIdentityWebApp(Configuration.GetSection("AzureAd"));
+            //services.AddAuthentication(opcoesAutenticacao)
+            //        .AddMicrosoftIdentityWebApp(Configuration.GetSection("AzureAd"));
 
             //services
             //    .AddAuthentication("Bearer")
@@ -68,8 +68,8 @@ namespace Modelo.Core.Entity.Webapi
 
             app.UseRouting();
 
-            app.UseAuthentication();
-            app.UseAuthorization();
+            //app.UseAuthentication();
+            //app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
