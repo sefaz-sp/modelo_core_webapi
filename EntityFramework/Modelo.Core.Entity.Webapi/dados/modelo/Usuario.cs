@@ -1,13 +1,17 @@
 ﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.Claims;
+using System.Text;
+using System.Xml;
 
 namespace Modelo.Core.Entity.Webapi
 {
     public class Usuario
     {
         public string Token { get; set; }
+        private XmlDocument TokenSAML { get; set; }
         [Display(Name = "email")]
         public string Login { get; set; }
         public string Nome { get; set; }
@@ -20,6 +24,24 @@ namespace Modelo.Core.Entity.Webapi
 
         public Usuario(IHttpContextAccessor acessor)
         {
+            TokenSAML = new XmlDocument();
+            if (acessor.HttpContext.User.Identities.First().BootstrapContext != null)
+            {
+                Token = acessor.HttpContext.User.Identities.First().BootstrapContext.ToString();
+                //Se BootstrapContext tem conteúdo, estamos no contexto da autenticação na aplicação
+                TokenSAML.LoadXml(Token);
+                Token = Convert.ToBase64String(System.Text.UTF8Encoding.UTF8.GetBytes(Token));
+            }
+            else
+            {
+                //Se não, estamos tratando da autorização que chegou na requisição à api
+                if (acessor.HttpContext.Request.Headers["Authorization"].Count > 0)
+                {
+                    try { TokenSAML.LoadXml(UTF8Encoding.UTF8.GetString(Convert.FromBase64String(acessor.HttpContext.Request.Headers["Authorization"].ToString().Split(" ")[1]))); }
+                    catch { }
+                }
+            }
+
             var claims = acessor.HttpContext.User.Claims.ToList();
             foreach (Claim claim in claims)
             {
