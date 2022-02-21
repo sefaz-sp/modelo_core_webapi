@@ -61,6 +61,7 @@
     <Folder Include="Procedures" />
     <Folder Include="Scripts" />
     <Folder Include="Users" />
+    <Folder Include="Security\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\PROJETOS.sql" />
@@ -69,6 +70,7 @@
     <Build Include="Procedures\USP_PROJETOS_UPD.sql" />
     <Build Include="Procedures\USP_PROJETOS_SEL.sql" />
     <Build Include="Procedures\USP_PROJETOS_DEL.sql" />
+    <Build Include="Security\db_usuario.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Modelo.Core.ADO.Db.refactorlog" />

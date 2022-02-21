@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[USP_PROJETOS_INS]
+CREATE PROCEDURE [dbo].[USP_PROJETOS_INS]
 	@nm_projeto nvarchar(50),
 	@ds_projeto nvarchar(4000)
 AS
@@ -10,3 +10,7 @@ AS
 
 	select @id
 GO
+GRANT EXECUTE
+    ON OBJECT::[dbo].[USP_PROJETOS_INS] TO [db_usuario]
+    AS [dbo];
+
