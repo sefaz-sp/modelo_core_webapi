@@ -2,15 +2,15 @@
 <SchemaComparison>
   <Version>10</Version>
   <SourceModelProvider>
+    <FileBasedModelProvider>
+      <Name></Name>
+      <DatabaseFileName>D:\Source\layout_padrao\modelo_core_webapi\ADO\Modelo.Core.ADO.Db\bin\Release\Modelo.Core.ADO.Db.dacpac</DatabaseFileName>
+    </FileBasedModelProvider>
+  </SourceModelProvider>
+  <TargetModelProvider>
     <ConnectionBasedModelProvider>
       <ConnectionString>Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=DB_CIA_PROJETOS;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False</ConnectionString>
     </ConnectionBasedModelProvider>
-  </SourceModelProvider>
-  <TargetModelProvider>
-    <ProjectBasedModelProvider>
-      <ProjectGuid>{4b3348e5-9fa8-46af-a3e9-3732a14654a7}</ProjectGuid>
-      <Name>Modelo.Core.ADO.Db</Name>
-    </ProjectBasedModelProvider>
   </TargetModelProvider>
   <SchemaCompareSettingsService>
     <SchemaCompareSettingsService>
@@ -334,11 +334,11 @@
       </PropertyElementName>
       <PropertyElementName>
         <Name>TargetDatabaseName</Name>
-        <Value>Modelo.Core.ADO.Db</Value>
+        <Value>DB_CIA_PROJETOS</Value>
       </PropertyElementName>
       <PropertyElementName>
         <Name>TargetConnectionString</Name>
-        <Value>Integrated Security=True;Pooling=False;Connect Timeout=30</Value>
+        <Value>Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=DB_CIA_PROJETOS;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;Application Name="Microsoft SQL Server Data Tools, Schema Compare"</Value>
       </PropertyElementName>
       <PropertyElementName>
         <Name>TreatVerificationErrorsAsWarnings</Name>
