@@ -11,7 +11,7 @@ using Modelo.Core.Entity.Webapi.Contexto;
 
 namespace Modelo.Core.Entity.Webapi.Controllers
 {
-    //[Authorize] //Retirado até que se descubra o porquê de não estar funcionando a autenticação da api
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ProjetosController : ControllerBase
@@ -27,14 +27,14 @@ namespace Modelo.Core.Entity.Webapi.Controllers
             _usuario = usuario;
         }
 
-        //[AllowAnonymous]
+        [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Projetos>>> GetProjetos()
         {
             return await _context.Projetos.ToListAsync();
         }
 
-        //[AllowAnonymous]
+        [AllowAnonymous]
         [HttpGet("status")]
         public ActionResult<string> TesteAcesso()
         {
@@ -60,7 +60,7 @@ namespace Modelo.Core.Entity.Webapi.Controllers
             return resultado;
         }
 
-        //[AllowAnonymous]
+        [AllowAnonymous]
         [HttpGet("conexao")]
         public async Task<ActionResult<string>> TesteConexao()
         {
@@ -80,6 +80,7 @@ namespace Modelo.Core.Entity.Webapi.Controllers
             return resultado;
         }
 
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<ActionResult<Projetos>> GetProjetos(long id)
         {
@@ -110,7 +111,7 @@ namespace Modelo.Core.Entity.Webapi.Controllers
             return CreatedAtAction("GetProjetos", new { id = projetos.cd_projeto }, projetos);
         }
 
-        [HttpDelete("{id}")]
+         [HttpDelete("{id}")]
         public async Task<ActionResult<Projetos>> DeleteProjetos(long id)
         {
             if (!ProjetoExists(id))

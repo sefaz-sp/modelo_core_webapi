@@ -38,19 +38,10 @@ namespace Modelo.Core.Entity.Webapi
                 var opcoesAutenticacao = identityConfig.AuthenticationOptions;
 
                 //Microsoft.Identity.Web e Microsoft.Identity.Web.UI
-                services.AddAuthentication(opcoesAutenticacao)
-                        .AddMicrosoftIdentityWebApp(Configuration.GetSection("AzureAd"));
+                //services.AddAuthentication(opcoesAutenticacao)
+                //        .AddMicrosoftIdentityWebApi(Configuration.GetSection("AzureAd"));
 
-                JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
-                //services.AddMicrosoftIdentityWebApiAuthentication(Configuration.GetSection("AzureAd"));
-                services.AddControllers(options =>
-                {
-                    var policy = new AuthorizationPolicyBuilder()
-                        .RequireAuthenticatedUser()
-                        .RequireClaim("email")
-                        .Build();
-                    options.Filters.Add(new AuthorizeFilter(policy));
-                });
+                services.AddMicrosoftIdentityWebApiAuthentication(Configuration);
             };
         }
 
