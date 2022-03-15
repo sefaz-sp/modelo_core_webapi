@@ -11,6 +11,7 @@ using Modelo.Core.Entity.Webapi.Contexto;
 
 namespace Modelo.Core.Entity.Webapi.Controllers
 {
+    //[Authorize(Roles = "Projetos.Gravacao")] //convencao
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
@@ -93,13 +94,21 @@ namespace Modelo.Core.Entity.Webapi.Controllers
             return projetos;
         }
 
+        //[Authorize(Policy = "")]
         [HttpPut]
         public async Task<ActionResult<Projetos>> PutProjetos(Projetos projetos)
         {
-            _context.Entry(projetos).State = EntityState.Modified;
+            if (User.IsInRole("Gravacao"))
+            {
+                _context.Entry(projetos).State = EntityState.Modified;
 
-            await _context.SaveChangesAsync();
-            return projetos;
+                await _context.SaveChangesAsync();
+                return projetos;
+            }
+            else 
+            { 
+                return Forbid(); 
+            }   
         }
 
         [HttpPost]
@@ -111,7 +120,7 @@ namespace Modelo.Core.Entity.Webapi.Controllers
             return CreatedAtAction("GetProjetos", new { id = projetos.cd_projeto }, projetos);
         }
 
-         [HttpDelete("{id}")]
+        [HttpDelete("{id}")]
         public async Task<ActionResult<Projetos>> DeleteProjetos(long id)
         {
             if (!ProjetoExists(id))

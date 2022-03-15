@@ -34,13 +34,6 @@ namespace Modelo.Core.Entity.Webapi
 
             if (Configuration["identity:type"] == "azuread")
             {
-                IdentityConfig identityConfig = new IdentityConfig(Configuration);
-                var opcoesAutenticacao = identityConfig.AuthenticationOptions;
-
-                //Microsoft.Identity.Web e Microsoft.Identity.Web.UI
-                //services.AddAuthentication(opcoesAutenticacao)
-                //        .AddMicrosoftIdentityWebApi(Configuration.GetSection("AzureAd"));
-
                 services.AddMicrosoftIdentityWebApiAuthentication(Configuration);
             };
         }

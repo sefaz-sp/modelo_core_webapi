@@ -36,7 +36,7 @@ namespace Modelo.Core.ADO.WebApi
                     Description = "API de exemplo utilizando .NET Core e ADO.NET",
                     Contact = new OpenApiContact
                     {
-                        Name = "DTI-CIA",
+                        Name = "DTI-CAP",
                         Email = "dticia@fazenda.sp.gov.br",
                         Url = new Uri(@"https://ads.intra.fazenda.sp.gov.br/tfs/ADMIN/Wiki_Arquitetura")
                     }
