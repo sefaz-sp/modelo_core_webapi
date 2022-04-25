@@ -12,7 +12,7 @@ using Modelo.Core.Entity.Webapi.Contexto;
 namespace Modelo.Core.Entity.Webapi.Controllers
 {
     //[Authorize(Roles = "Projetos.Gravacao")] //convencao
-    [Authorize]
+    //[Authorize] //Funciona somente com azuread
     [Route("api/[controller]")]
     [ApiController]
     public class ProjetosController : ControllerBase

@@ -7,9 +7,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Modelo.Core.Entity.Webapi.Contexto;
 using Microsoft.Identity.Web;
-using System.IdentityModel.Tokens.Jwt;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace Modelo.Core.Entity.Webapi
 {
@@ -30,7 +27,7 @@ namespace Modelo.Core.Entity.Webapi
             services.AddTransient<Usuario>();
 
             services.AddDbContext<ProjetosContext>(options => { options.UseSqlServer(Configuration.GetConnectionString("DB_APLICACAO_MODELO")); });
-            services.AddApplicationInsightsTelemetry(Configuration["APPINSIGHTS_CONNECTIONSTRING"]);
+            services.AddApplicationInsightsTelemetry(Configuration["ApplicationInsights:InstrumentationKey"]);
 
             if (Configuration["identity:type"] == "azuread")
             {
@@ -58,8 +55,11 @@ namespace Modelo.Core.Entity.Webapi
 
             app.UseRouting();
 
-            app.UseAuthentication();
-            app.UseAuthorization();
+            if (Configuration["identity:type"] == "azuread")
+            {
+                app.UseAuthentication();
+                app.UseAuthorization();
+            };
 
             app.UseEndpoints(endpoints =>
             {

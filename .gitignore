@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/ADO/Modelo.Core.ADO.WebApi/Properties/ServiceDependencies/local
+/ADO/Modelo.Core.ADO.WebApi/Properties/serviceDependencies.json
+/ADO/Modelo.Core.ADO.WebApi/Properties/serviceDependencies.local.json

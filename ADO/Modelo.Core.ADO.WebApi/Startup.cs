@@ -10,6 +10,7 @@ using Modelo.Core.Service.Services;
 using System;
 using System.IO;
 using System.Reflection;
+using Microsoft.Identity.Web;
 
 namespace Modelo.Core.ADO.WebApi
 {
@@ -26,7 +27,6 @@ namespace Modelo.Core.ADO.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-
             services.AddSwaggerGen(x =>
             {
                 x.SwaggerDoc("v1", new OpenApiInfo
@@ -47,18 +47,13 @@ namespace Modelo.Core.ADO.WebApi
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 x.IncludeXmlComments(xmlPath);
             });
-
-            #region Serviços
-
             services.AddTransient<IBaseService<ProjetoEntity>, BaseService<ProjetoEntity>>();
-
-            #endregion
-
-            #region Repositórios
-
             services.AddTransient<IBaseRepository<ProjetoEntity>, ProjetoRepository>();
-
-            #endregion
+            if (Configuration["identity:type"] == "azuread")
+            {
+                services.AddMicrosoftIdentityWebApiAuthentication(Configuration);
+            };
+            services.AddApplicationInsightsTelemetry(Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"]);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -69,7 +64,7 @@ namespace Modelo.Core.ADO.WebApi
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "API Exemplo .NET Core V1");
-             });
+            });
 
             app.UseHttpsRedirection();
 
