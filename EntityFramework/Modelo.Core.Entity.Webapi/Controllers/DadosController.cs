@@ -98,17 +98,17 @@ namespace Modelo.Core.Entity.Webapi.Controllers
         [HttpPut]
         public async Task<ActionResult<Projetos>> PutProjetos(Projetos projetos)
         {
-            if (User.IsInRole("Gravacao"))
-            {
+            //if (User.IsInRole("Gravacao"))
+            //{
                 _context.Entry(projetos).State = EntityState.Modified;
 
                 await _context.SaveChangesAsync();
                 return projetos;
-            }
-            else 
-            { 
-                return Forbid(); 
-            }   
+            //}
+            //else 
+            //{ 
+            //    return Forbid(); 
+            //}   
         }
 
         [HttpPost]
